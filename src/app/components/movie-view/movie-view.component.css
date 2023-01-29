@@ -1,0 +1,14 @@
+.btn .icon .bi::before {
+  vertical-align: sub;
+}
+
+.article-image img {
+  width: 300px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .icon {
+    padding-right: 0;
+  }
+}

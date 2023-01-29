@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MovieViewComponent } from './components/movie-view/movie-view.component';
 import { MoviesComponent } from './components/movies/movies.component';
 
-const routes: Routes = [{ path: '', component: MoviesComponent }];
+const routes: Routes = [
+  { path: '', component: MoviesComponent },
+  { path: 'movie/:id', component: MovieViewComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

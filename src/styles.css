@@ -4,3 +4,7 @@
 body {
   font-family: "Josefin Sans", sans-serif;
 }
+
+.icon {
+  padding-right: 0.5rem;
+}
