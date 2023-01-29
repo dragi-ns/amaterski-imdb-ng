@@ -18,6 +18,11 @@ export class MovieService {
       .pipe(catchError(this.handleError));
   }
 
+  getMovie(id: number): Observable<Movie> {
+    const movieUrl: string = `${this.apiUrl}/${id}`;
+    return this.http.get<Movie>(movieUrl).pipe(catchError(this.handleError));
+  }
+
   // https://angular.io/guide/http#getting-error-details
   private handleError(error: HttpErrorResponse): Observable<never> {
     let userMsg: string;
