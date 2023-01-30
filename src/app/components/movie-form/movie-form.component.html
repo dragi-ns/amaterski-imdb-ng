@@ -1,0 +1,221 @@
+<div class="container py-4">
+  <h2>Add Movie</h2>
+  <hr />
+  <form [formGroup]="movieForm" (ngSubmit)="onSubmit()" class="row g-3">
+    <div class="col-md-4">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        [class.is-valid]="!title?.invalid && (title?.dirty || title?.touched)"
+        [class.is-invalid]="title?.invalid && (title?.dirty || title?.touched)"
+        id="title"
+        name="title"
+        formControlName="title"
+        placeholder="Swan Song"
+        required
+      />
+      <div class="invalid-feedback">
+        <span *ngIf="title?.errors?.['required']">Title is required.</span>
+        <span *ngIf="title?.errors?.['minlength'] as errorObject">
+          Title is too short. (min:
+          {{ errorObject["requiredLength"] }})
+        </span>
+        <span *ngIf="title?.errors?.['maxlength'] as errorObject">
+          Title is too long. ({{ errorObject["actualLength"] }}/{{
+            errorObject["requiredLength"]
+          }})
+        </span>
+      </div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+    <div class="col-md-4">
+      <label for="year" class="form-label">Year</label>
+      <input
+        type="number"
+        class="form-control"
+        [class.is-valid]="!year?.invalid && (year?.dirty || year?.touched)"
+        [class.is-invalid]="year?.invalid && (year?.dirty || year?.touched)"
+        id="year"
+        name="year"
+        formControlName="year"
+        placeholder="2021"
+        required
+      />
+      <div class="invalid-feedback">
+        <span *ngIf="year?.errors?.['required']">Year must be a number.</span>
+        <span *ngIf="year?.errors?.['min'] as errorObject">
+          Year must be >= {{ errorObject["min"] }}
+        </span>
+        <span *ngIf="year?.errors?.['max'] as errorObject">
+          Year must be <= {{ errorObject["max"] }}
+        </span>
+      </div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+    <div class="col-md-4">
+      <label for="duration" class="form-label"> Duration (in minutes) </label>
+      <input
+        type="number"
+        class="form-control"
+        [class.is-valid]="
+          !duration?.invalid && (duration?.dirty || duration?.touched)
+        "
+        [class.is-invalid]="
+          duration?.invalid && (duration?.dirty || duration?.touched)
+        "
+        id="duration"
+        name="duration"
+        formControlName="duration"
+        placeholder="105"
+        required
+      />
+      <div class="invalid-feedback">
+        <span *ngIf="year?.errors?.['required']">Duration is required.</span>
+
+        <span *ngIf="year?.errors?.['min'] as errorObject">
+          Duration must be > {{ errorObject["min"] }}
+        </span>
+      </div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+    <div class="col-md-4">
+      <label for="director" class="form-label">Director</label>
+      <input
+        type="text"
+        class="form-control"
+        [class.is-valid]="
+          !director?.invalid && (director?.dirty || director?.touched)
+        "
+        [class.is-invalid]="
+          director?.invalid && (director?.dirty || director?.touched)
+        "
+        id="director"
+        name="director"
+        formControlName="director"
+        placeholder="Todd Stephens"
+        required
+      />
+      <div class="invalid-feedback">
+        <span *ngIf="director?.errors?.['required']">
+          Director is required.
+        </span>
+        <span *ngIf="director?.errors?.['minlength'] as errorObject">
+          Director name is too short. (min:
+          {{ errorObject["requiredLength"] }})
+        </span>
+        <span *ngIf="director?.errors?.['maxlength'] as errorObject">
+          Director name is too long. ({{ errorObject["actualLength"] }}/{{
+            errorObject["requiredLength"]
+          }})
+        </span>
+      </div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+    <div class="col-md-4">
+      <label for="logo" class="form-label">Poster</label>
+      <input
+        type="url"
+        class="form-control"
+        [class.is-valid]="
+          !logo?.pending && !logo?.invalid && (logo?.dirty || logo?.touched)
+        "
+        [class.is-invalid]="
+          !logo?.pending && logo?.invalid && (logo?.dirty || logo?.touched)
+        "
+        id="logo"
+        name="logo"
+        formControlName="logo"
+        placeholder="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/tf63pGGx3qdCj11xqJ8Ae3scTb.jpg"
+        required
+      />
+      <div class="invalid-feedback">
+        <span *ngIf="logo?.errors?.['required']">Poster is required.</span>
+        <span *ngIf="logo?.errors?.['pattern']">
+          Poster must be valid URL.
+        </span>
+        <span *ngIf="logo?.errors?.['isValidImage']">
+          Poster must be a valid image URL.
+        </span>
+      </div>
+      <div class="valid-feedback">Looks good!</div>
+      <div *ngIf="logo?.pending" class="text-muted">
+        <small>Validing image URL...</small>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="rating" class="form-label">Rating</label>
+      <input
+        type="number"
+        class="form-control"
+        [class.is-valid]="
+          !rating?.invalid && (rating?.dirty || rating?.touched)
+        "
+        [class.is-invalid]="
+          rating?.invalid && (rating?.dirty || rating?.touched)
+        "
+        id="rating"
+        name="rating"
+        formControlName="rating"
+        placeholder="7.2"
+        required
+      />
+      <div class="invalid-feedback">
+        <span *ngIf="rating?.errors?.['required']"> Rating is required. </span>
+
+        <span *ngIf="rating?.errors?.['min'] as errorObject">
+          Rating must be >= {{ errorObject["min"] }}
+        </span>
+
+        <span *ngIf="rating?.errors?.['max'] as errorObject">
+          Rating must be <= {{ errorObject["max"] }}
+        </span>
+      </div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+    <div class="col-12">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        [class.is-valid]="
+          !description?.invalid && (description?.dirty || description?.touched)
+        "
+        [class.is-invalid]="
+          description?.invalid && (description?.dirty || description?.touched)
+        "
+        id="description"
+        name="description"
+        formControlName="description"
+        placeholder="An aging hairdresser escapes his nursing home to embark on an odyssey across his small town to style a dead woman's hair for her funeral, rediscovering his sparkle along the way."
+        required
+      ></textarea>
+      <div class="invalid-feedback">
+        <span *ngIf="description?.errors?.['required']">
+          Description is required.
+        </span>
+        <span *ngIf="description?.errors?.['minlength'] as errorObject">
+          Description is too short. (min:
+          {{ errorObject["requiredLength"] }})
+        </span>
+        <span *ngIf="description?.errors?.['maxlength'] as errorObject">
+          Description is too long. ({{ errorObject["actualLength"] }}/{{
+            errorObject["requiredLength"]
+          }})
+        </span>
+      </div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+    <div class="col-12 text-end">
+      <button type="button" class="btn btn-secondary me-2" (click)="goBack()">
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!movieForm.valid"
+      >
+        Add Movie
+      </button>
+    </div>
+  </form>
+</div>
