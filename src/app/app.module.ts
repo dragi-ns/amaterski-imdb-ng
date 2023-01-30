@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-// TODO: https://ng-bootstrap.github.io/#/getting-started#imports
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -18,6 +17,7 @@ import { MovieFormComponent } from './components/movie-form/movie-form.component
 import { MovieAddComponent } from './components/movie-add/movie-add.component';
 import { MovieEditComponent } from './components/movie-edit/movie-edit.component';
 import { MovieDeleteComponent } from './components/movie-delete/movie-delete.component';
+import { ToastsComponent } from './components/toasts/toasts.component';
 
 @NgModule({
   declarations: [
@@ -32,13 +32,14 @@ import { MovieDeleteComponent } from './components/movie-delete/movie-delete.com
     MovieAddComponent,
     MovieEditComponent,
     MovieDeleteComponent,
+    ToastsComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule,
+    NgbToastModule,
     AppRoutingModule,
   ],
   providers: [],

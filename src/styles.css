@@ -8,3 +8,7 @@ body {
 .icon {
   padding-right: 0.5rem;
 }
+
+.toast-body a {
+  color: #fff;
+}
