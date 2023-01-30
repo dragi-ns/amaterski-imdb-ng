@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 
 import { Movie } from '../interfaces/movie';
@@ -8,7 +12,12 @@ import { Movie } from '../interfaces/movie';
   providedIn: 'root',
 })
 export class MovieService {
-  private apiUrl: string = 'http://localhost:3000/movies';
+  private apiUrl = 'http://localhost:3000/movies';
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -21,6 +30,12 @@ export class MovieService {
   getMovie(id: number): Observable<Movie> {
     const movieUrl: string = `${this.apiUrl}/${id}`;
     return this.http.get<Movie>(movieUrl).pipe(catchError(this.handleError));
+  }
+
+  addMovie(movie: Movie): Observable<Movie> {
+    return this.http
+      .post<Movie>(this.apiUrl, movie, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
   // https://angular.io/guide/http#getting-error-details
