@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/interfaces/movie';
 import { MovieService } from 'src/app/services/movie.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-movie-edit',
@@ -14,7 +15,8 @@ export class MovieEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private movieService: MovieService
+    private movieService: MovieService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit() {
@@ -27,15 +29,23 @@ export class MovieEditComponent implements OnInit {
   }
 
   editMovie(movie: Movie) {
-    this.movieService
-      .editMovie({ ...movie, id: this.movie?.id })
-      .subscribe((movie) => {
-        // TODO: Show the success toast
-        // TODO: Also handle the case when the movie isn't updated successfully
-        // For now just console.log the movie
-        // and redirect the user to the movie view page
-        console.log(movie);
-        this.router.navigate([`/movie/${movie.id}`]);
-      });
+    this.movieService.editMovie({ ...movie, id: this.movie?.id }).subscribe({
+      next: () => {
+        this.toastService.show('Movie successfully updated!', {
+          classname: 'bg-success text-light',
+        });
+      },
+      error: () => {
+        this.toastService.show(
+          'There was an error while updating movie; please try again later!',
+          {
+            classname: 'bg-danger text-light',
+          }
+        );
+      },
+      complete: () => {
+        this.router.navigate([`/movie/${this.movie?.id}`]);
+      },
+    });
   }
 }

@@ -4,7 +4,6 @@ import {
   Input,
   OnChanges,
   Output,
-  SimpleChanges,
 } from '@angular/core';
 import { Location } from '@angular/common';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
@@ -103,6 +102,7 @@ export class MovieFormComponent implements OnChanges {
   onSubmit() {
     const newMovie: Movie = this.movieForm.value as Movie;
     this.submitted.emit(newMovie);
+    this.movieForm.reset();
   }
 
   goBack() {

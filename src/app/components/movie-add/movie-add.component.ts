@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { Movie } from 'src/app/interfaces/movie';
 import { MovieService } from 'src/app/services/movie.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-movie-add',
@@ -9,16 +9,31 @@ import { MovieService } from 'src/app/services/movie.service';
   styleUrls: [],
 })
 export class MovieAddComponent {
-  constructor(private movieService: MovieService, private router: Router) {}
+  @ViewChild('successTemplate', { static: true })
+  successTemplate?: TemplateRef<any>;
+  addedMovie?: Movie;
+
+  constructor(
+    private movieService: MovieService,
+    private toastService: ToastService
+  ) {}
 
   addMovie(movie: Movie): void {
-    this.movieService.addMovie(movie).subscribe((movie) => {
-      // TODO: Show the success toast with a link to the movie view
-      // TODO: Also handle the case when the movie isn't added successfully
-      // For now just console.log the movie
-      // and redirect the user to the homepage
-      console.log(movie);
-      this.router.navigate(['']);
+    this.movieService.addMovie(movie).subscribe({
+      next: (movie) => {
+        this.addedMovie = movie;
+        this.toastService.show(this.successTemplate!, {
+          classname: 'bg-success text-light',
+        });
+      },
+      error: () => {
+        this.toastService.show(
+          'There was an error while adding movie; please try again later!',
+          {
+            classname: 'bg-danger text-light',
+          }
+        );
+      },
     });
   }
 }
