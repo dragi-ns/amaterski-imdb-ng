@@ -45,6 +45,11 @@ export class MovieService {
       .pipe(catchError(this.handleError));
   }
 
+  deleteMovie(id: number): Observable<Movie> {
+    const movieUrl: string = `${this.apiUrl}/${id}`;
+    return this.http.delete<Movie>(movieUrl);
+  }
+
   // https://angular.io/guide/http#getting-error-details
   private handleError(error: HttpErrorResponse): Observable<never> {
     let userMsg: string;

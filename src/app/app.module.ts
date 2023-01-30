@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 // TODO: https://ng-bootstrap.github.io/#/getting-started#imports
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,6 +17,7 @@ import { DurationPipe } from './pipes/duration.pipe';
 import { MovieFormComponent } from './components/movie-form/movie-form.component';
 import { MovieAddComponent } from './components/movie-add/movie-add.component';
 import { MovieEditComponent } from './components/movie-edit/movie-edit.component';
+import { MovieDeleteComponent } from './components/movie-delete/movie-delete.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +31,12 @@ import { MovieEditComponent } from './components/movie-edit/movie-edit.component
     MovieFormComponent,
     MovieAddComponent,
     MovieEditComponent,
+    MovieDeleteComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     NgbModule,
     AppRoutingModule,
