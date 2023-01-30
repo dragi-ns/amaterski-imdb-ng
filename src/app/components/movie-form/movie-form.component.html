@@ -72,9 +72,11 @@
         required
       />
       <div class="invalid-feedback">
-        <span *ngIf="year?.errors?.['required']">Duration is required.</span>
+        <span *ngIf="duration?.errors?.['required']"
+          >Duration is required.</span
+        >
 
-        <span *ngIf="year?.errors?.['min'] as errorObject">
+        <span *ngIf="duration?.errors?.['min'] as errorObject">
           Duration must be > {{ errorObject["min"] }}
         </span>
       </div>

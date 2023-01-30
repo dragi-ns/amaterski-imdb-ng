@@ -22,7 +22,7 @@ export class UrlImageValidatorService implements AsyncValidator {
 
   private isValidImgUrl(
     url: string,
-    timeout: number = 5000
+    timeout: number = 2500
   ): Promise<ValidationErrors | null> {
     return new Promise((resolve) => {
       let timer: ReturnType<typeof setTimeout>;
