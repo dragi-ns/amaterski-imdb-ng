@@ -6,7 +6,7 @@ import { MovieService } from 'src/app/services/movie.service';
 @Component({
   selector: 'app-movie-add',
   templateUrl: './movie-add.component.html',
-  styleUrls: ['./movie-add.component.css'],
+  styleUrls: [],
 })
 export class MovieAddComponent {
   constructor(private movieService: MovieService, private router: Router) {}
