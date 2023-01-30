@@ -30,7 +30,7 @@ export class UrlImageValidatorService implements AsyncValidator {
 
       img.onerror = img.onabort = () => {
         clearTimeout(timer);
-        resolve({ isValidImage: false });
+        resolve({ isInvalidImage: true });
       };
 
       img.onload = () => {
@@ -42,7 +42,7 @@ export class UrlImageValidatorService implements AsyncValidator {
         // reset .src to invalid URL so it stops previous
         // loading, but doesn't trigger new load
         img.src = '//!!!!/test.jpg';
-        resolve({ isValidImage: false });
+        resolve({ isInvalidImage: true });
       }, timeout);
 
       img.src = url;

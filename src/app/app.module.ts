@@ -15,6 +15,7 @@ import { MovieViewComponent } from './components/movie-view/movie-view.component
 import { DurationPipe } from './pipes/duration.pipe';
 import { MovieFormComponent } from './components/movie-form/movie-form.component';
 import { MovieAddComponent } from './components/movie-add/movie-add.component';
+import { MovieEditComponent } from './components/movie-edit/movie-edit.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MovieAddComponent } from './components/movie-add/movie-add.component';
     DurationPipe,
     MovieFormComponent,
     MovieAddComponent,
+    MovieEditComponent,
   ],
   imports: [
     BrowserModule,

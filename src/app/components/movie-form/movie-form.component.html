@@ -1,5 +1,6 @@
 <div class="container py-4">
-  <h2>Add Movie</h2>
+  <h2 *ngIf="!movie">Add Movie</h2>
+  <h2 *ngIf="movie">Edit Movie</h2>
   <hr />
   <form [formGroup]="movieForm" (ngSubmit)="onSubmit()" class="row g-3">
     <div class="col-md-4">
@@ -134,12 +135,15 @@
         <span *ngIf="logo?.errors?.['pattern']">
           Poster must be valid URL.
         </span>
-        <span *ngIf="logo?.errors?.['isValidImage']">
+        <span *ngIf="logo?.errors?.['isInvalidImage']">
           Poster must be a valid image URL.
         </span>
       </div>
       <div class="valid-feedback">Looks good!</div>
-      <div *ngIf="logo?.pending" class="text-muted">
+      <div
+        *ngIf="logo?.pending && (logo?.dirty || logo?.touched)"
+        class="text-muted"
+      >
         <small>Validing image URL...</small>
       </div>
     </div>
@@ -212,9 +216,10 @@
       <button
         type="submit"
         class="btn btn-primary"
-        [disabled]="!movieForm.valid"
+        [disabled]="!movieForm.valid || !movieForm.dirty"
       >
-        Add Movie
+        <span *ngIf="!movie">Add Movie</span>
+        <span *ngIf="movie">Edit Movie</span>
       </button>
     </div>
   </form>

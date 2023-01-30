@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { Location } from '@angular/common';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 
@@ -10,7 +17,7 @@ import { Movie } from 'src/app/interfaces/movie';
   templateUrl: './movie-form.component.html',
   styleUrls: ['./movie-form.component.css'],
 })
-export class MovieFormComponent {
+export class MovieFormComponent implements OnChanges {
   @Input() movie?: Movie;
   @Output() submitted = new EventEmitter<Movie>();
 
@@ -58,6 +65,12 @@ export class MovieFormComponent {
     private urlImageValidator: UrlImageValidatorService,
     private location: Location
   ) {}
+
+  ngOnChanges() {
+    if (this.movie) {
+      this.movieForm.patchValue(this.movie);
+    }
+  }
 
   get title() {
     return this.movieForm.get('title');
