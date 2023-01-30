@@ -1,0 +1,55 @@
+<div id="movie-details" class="container py-4">
+  <h2 class="text-center">
+    Are you sure you want to delete the "{{ movie?.title }}" movie?
+  </h2>
+  <hr />
+  <form
+    (ngSubmit)="onSubmit()"
+    #movieDeleteForm="ngForm"
+    class="row g-3"
+    novalidate
+  >
+    <div class="col-12">
+      <label for="reason" class="form-label">
+        Reason for deleting (optional)
+      </label>
+      <textarea
+        class="form-control"
+        id="reason"
+        name="reason"
+        [(ngModel)]="reason"
+        #textarea="ngModel"
+        [class.is-valid]="
+          !textarea?.invalid &&
+          !textarea?.pristine &&
+          (textarea?.dirty || textarea?.touched)
+        "
+        [class.is-invalid]="
+          textarea?.invalid && (textarea?.dirty || textarea?.touched)
+        "
+        placeholder="This movie sucks!"
+        maxlength="512"
+      ></textarea>
+      <div class="invalid-feedback">
+        <span *ngIf="textarea.errors?.['maxlength'] as errorObject">
+          Reason is too long! ({{ errorObject["actualLength"] }} /
+          {{ errorObject["requiredLength"] }})
+        </span>
+      </div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+    <div class="col-12 text-end">
+      <button
+        type="button"
+        id="cancel-btn"
+        class="btn btn-secondary me-2"
+        (click)="goBack()"
+      >
+        Cancel
+      </button>
+      <button class="btn btn-danger" [disabled]="!movieDeleteForm.form.valid">
+        Delete Movie
+      </button>
+    </div>
+  </form>
+</div>
