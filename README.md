@@ -1,27 +1,25 @@
 # Amaterski IMDB NG 😉
 
-Ovo je Angular verzija. Vanila JS verzija: https://github.com/dragi-ns/amaterski-imdb
+Ovo je Angular verzija. Vanilla JS verzija: https://github.com/dragi-ns/amaterski-imdb
 
 ## Pokretanje
 
 ```bash
-# kloniranje
+# Kloniranje
 $ git clone https://github.com/dragi-ns/amaterski-imdb-ng.git
 # Ulazak u folder
 $ cd amaterski-imdb-ng/
-# Instaliranje neophodnih biblioteka
+# Instaliranje neophodnih biblioteka (sačekati da završi)
 $ npm install
-# Pokretanje json-server-a
+# Pokretanje json-server-a (u jednom terminalu)
 $ npm run db
-# Pokretanje Angular dev servera
+# Pokretanje Angular dev servera (u drugom terminalu)
 $ ng serve
 ```
 
-Live Server ekstenzija osvežava stranice kada se promeni data/db.json, tako da je poželjno da se stavi na listu fajlova za ignorsanje https://ritwickdey.github.io/vscode-live-server/docs/settings.html. Dobar primer neželjenog osvežavanja stranice je na movie_add.html stranici gde se nakon uspešnog dodavanja filma, stranica osveži.
-
 ## Zadatak
 
-Kreirati json fajl koji će imati spisak filmova (movies) sa poljima: title: string, year: string, duration: number (u minutima), rating (number), description: string, director: string, logo: string (URL slike od filma). Popuniti JSON podacima po želji (nekoliko filmova). JSON fajl se “pokreće” pomoću json-server biblioteke. Napraviti web aplikaciju koja će predstavljati portal za ocenjivanje filmova i sadrži:
+Kreirati json fajl koji će imati spisak filmova (movies) sa poljima: title: string, year: string, duration: number (u minutima), rating: number, description: string, director: string, logo: string (URL slike od filma). Popuniti JSON podacima po želji (nekoliko filmova). JSON fajl se “pokreće” pomoću json-server biblioteke. Napraviti web aplikaciju koja će predstavljati portal za ocenjivanje filmova i sadrži:
 
 - Početnu stranicu (indeks.html) koja prikazuje sve filmove (title, year i rating)
 - Na početnoj stranici se nalazi i dugme Dodati film koje otvara novu stranicu (movie_add.html) u okviru koje se nalazi forma za dodavanje novog filma i gde je moguće kreirati film

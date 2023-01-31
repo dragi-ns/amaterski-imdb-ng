@@ -30,6 +30,8 @@ export class MovieDeleteComponent implements OnInit {
     const id: number = Number(this.route.snapshot.paramMap.get('id'));
     this.movieService.getMovie(id).subscribe({
       next: (movie) => (this.movie = movie),
+      // Redirect the user to the homepage (Movies)
+      // if the movie doesn't exist
       error: (_) => this.router.navigate(['']),
     });
   }
@@ -40,7 +42,7 @@ export class MovieDeleteComponent implements OnInit {
         // Just console.log the reason for now
         console.log('Reason: ', this.reason);
         this.toastService.show(
-          `Movie "${this.movie?.title}" successfully deleted!`,
+          `The movie "${this.movie?.title}" was successfully deleted!`,
           {
             classname: 'bg-success text-light',
           }

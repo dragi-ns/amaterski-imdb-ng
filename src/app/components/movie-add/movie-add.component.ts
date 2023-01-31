@@ -28,7 +28,7 @@ export class MovieAddComponent {
       },
       error: () => {
         this.toastService.show(
-          'There was an error while adding movie; please try again later!',
+          'There was an error while adding the movie; please try again later!',
           {
             classname: 'bg-danger text-light',
           }

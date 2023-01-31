@@ -1,7 +1,7 @@
 <ng-template #successTemplate>
-  Successfully added "<a routerLink="/movie/{{ addedMovie?.id }}">{{
+  Successfully added the "<a routerLink="/movie/{{ addedMovie?.id }}">{{
     addedMovie?.title
   }}</a
-  >"!
+  >" movie!
 </ng-template>
 <app-movie-form (submitted)="addMovie($event)"></app-movie-form>

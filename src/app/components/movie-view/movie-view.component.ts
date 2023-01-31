@@ -19,10 +19,10 @@ export class MovieViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getHero();
+    this.getMovie();
   }
 
-  getHero(): void {
+  getMovie(): void {
     const id: number = Number(this.route.snapshot.paramMap.get('id'));
     this.movieService.getMovie(id).subscribe({
       next: (movie) => (this.movie = movie),
